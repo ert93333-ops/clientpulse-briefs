@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClientPulse Briefs | Client-ready weekly updates from rough notes</title>
+    <meta
+      name="description"
+      content="Turn scattered project notes into a polished client status update with wins, progress, risks, next steps, and client asks."
+    >
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ert93333-ops.github.io/clientpulse-briefs/">
+    <meta property="og:title" content="ClientPulse Briefs">
+    <meta
+      property="og:description"
+      content="Client-ready weekly updates from rough notes for agencies, consultants, and freelancers."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ert93333-ops.github.io/clientpulse-briefs/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js?v=202606032130" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ClientPulse Briefs home">
+        <span class="brand-mark" aria-hidden="true">CP</span>
+        <span>ClientPulse Briefs</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#preview">Preview</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-cta" href="#waitlist">Reserve early access</a>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">For agencies, consultants, and fractional marketers</p>
+          <h1 id="hero-title">Client-ready weekly updates from rough notes.</h1>
+          <p class="hero-subhead">
+            Turn scattered bullets, metrics, blockers, and next steps into a clear update your client can understand.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#waitlist">Reserve early access</a>
+            <a class="secondary-button" href="#preview">View sample brief</a>
+          </div>
+          <dl class="signal-list" aria-label="Product promise">
+            <div>
+              <dt>2 min</dt>
+              <dd>from notes to draft</dd>
+            </div>
+            <div>
+              <dt>$15/mo</dt>
+              <dd>solo pricing test</dd>
+            </div>
+            <div>
+              <dt>0 setup</dt>
+              <dd>paste notes, copy brief</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="product-preview" id="preview" aria-label="ClientPulse Briefs generator">
+          <div class="preview-toolbar">
+            <span>Brief Generator</span>
+            <span class="status-pill">Demo mode</span>
+          </div>
+          <form class="generator-form" id="brief-form">
+            <label for="raw-notes">Rough notes</label>
+            <textarea id="raw-notes" name="raw-notes" rows="8">Launched the onboarding flow.
+Support handoffs dropped 18%.
+Analytics events are mapped.
+Copy approval is still blocking launch.
+Need client approval by Thursday.</textarea>
+            <div class="generator-actions">
+              <button class="primary-button" type="submit">Generate brief</button>
+              <button class="secondary-button" id="copy-brief" type="button" disabled>Copy brief</button>
+            </div>
+            <p class="workflow-error" id="workflow-error" role="alert"></p>
+          </form>
+          <section class="brief-output" id="brief-output" aria-live="polite" aria-label="Generated client update">
+            <p class="empty-output">Generate a sample brief to preview the client-ready format.</p>
+          </section>
+        </aside>
+      </section>
+
+      <section class="section-band problem-band" aria-labelledby="problem-title">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">The pain</p>
+            <h2 id="problem-title">Client updates should not feel like a second project.</h2>
+          </div>
+          <p>
+            Most updates begin as scattered Slack notes, task comments, metrics, and fuzzy blockers.
+            ClientPulse Briefs gives account leads a repeatable structure for confident communication.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-inner offer-section" aria-labelledby="offer-title">
+        <div>
+          <p class="eyebrow">The offer</p>
+          <h2 id="offer-title">A focused brief format for client confidence.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Wins and progress</h3>
+            <p>Open with business-relevant momentum instead of a raw task dump.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Risks and blockers</h3>
+            <p>Surface issues clearly without making the account feel out of control.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Next steps and asks</h3>
+            <p>Close every update with concrete ownership and decisions needed from the client.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-band pricing-band" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Pricing hypothesis</p>
+            <h2 id="pricing-title">Start with the plan that matches your client load.</h2>
+          </div>
+          <div class="pricing-grid">
+            <article class="price-card">
+              <h3>Solo</h3>
+              <p class="price">$15<span>/mo</span></p>
+              <p>For consultants and freelancers sending recurring client updates.</p>
+              <a class="plan-button" href="#waitlist">Reserve Solo</a>
+            </article>
+            <article class="price-card featured-price">
+              <h3>Agency</h3>
+              <p class="price">$39<span>/mo</span></p>
+              <p>For small teams and account managers coordinating multiple clients.</p>
+              <a class="plan-button" href="#waitlist">Reserve Agency</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-inner waitlist-section" id="waitlist" aria-labelledby="waitlist-title">
+        <div>
+          <p class="eyebrow">Early access</p>
+          <h2 id="waitlist-title">Join the launch list.</h2>
+          <p>
+            Stripe and email tools are not connected yet, so early access is captured as purchase intent first.
+          </p>
+        </div>
+        <form class="waitlist-shell" id="waitlist-form" aria-label="ClientPulse Briefs early access form">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          <label for="role">Role</label>
+          <input id="role" name="role" type="text" placeholder="Agency owner, consultant, account lead" required>
+          <label for="company">Company or practice</label>
+          <input id="company" name="company" type="text" placeholder="Acme Studio">
+          <label for="frequency">Client update frequency</label>
+          <select id="frequency" name="frequency">
+            <option>Weekly</option>
+            <option>Every two weeks</option>
+            <option>Monthly</option>
+            <option>Only when clients ask</option>
+          </select>
+          <label for="plan">Plan interest</label>
+          <select id="plan" name="plan">
+            <option>Solo - $15/month</option>
+            <option>Agency - $39/month</option>
+            <option>Not sure yet</option>
+          </select>
+          <label for="willingness">Willingness to pay</label>
+          <select id="willingness" name="willingness">
+            <option>$15/month if it saves 30 minutes weekly</option>
+            <option>$39/month if it helps multiple client accounts</option>
+            <option>I need to try it first</option>
+            <option>Not willing to pay yet</option>
+          </select>
+          <label for="pain">Biggest update pain</label>
+          <textarea id="pain" name="pain" rows="4" placeholder="What makes client updates slow, awkward, or easy to delay?"></textarea>
+          <label class="checkbox-row" for="intent">
+            <input id="intent" name="intent" type="checkbox" value="yes">
+            <span>I would consider paying if this saves me at least 30 minutes per week.</span>
+          </label>
+          <button class="primary-button" type="submit">Reserve early access</button>
+          <p class="form-note" id="waitlist-status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="section-band faq-band" id="faq" aria-labelledby="faq-title">
+        <div class="section-inner faq-layout">
+          <div>
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">Built for a narrow workflow.</h2>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>How is this different from ChatGPT?</summary>
+              <p>ClientPulse Briefs starts from a client-update structure, so the output is shaped for retention, clarity, and account confidence.</p>
+            </details>
+            <details>
+              <summary>Do I need to connect project-management tools?</summary>
+              <p>No. The first version is paste-in notes and copy-out brief, which keeps launch fast and avoids setup friction.</p>
+            </details>
+            <details>
+              <summary>Can I pay today?</summary>
+              <p>Not yet. The launch test captures purchase intent first, then enables payment once Stripe is configured.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-inner resource-section" aria-labelledby="resources-title">
+        <div>
+          <p class="eyebrow">Resources</p>
+          <h2 id="resources-title">Useful starting points for client updates.</h2>
+        </div>
+        <div class="resource-links">
+          <a href="./chatgpt-alternative-client-status-updates.html">
+            <span>Comparison</span>
+            ChatGPT alternative for client status updates
+          </a>
+          <a href="./client-status-update-template.html">
+            <span>Template</span>
+            Weekly client status update template
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

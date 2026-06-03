@@ -130,6 +130,7 @@ function buildRemoteIntentUrl(intent) {
   const params = new URLSearchParams({
     title: `Early access request - ${intent.plan || "ClientPulse Briefs"}`,
     body: safeBody,
+    labels: "early-access,purchase-intent",
   });
 
   return `${REMOTE_INTENT_BASE_URL}?${params.toString()}`;

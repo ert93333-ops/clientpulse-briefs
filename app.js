@@ -16,6 +16,7 @@ const ANALYTICS_KEY = "clientpulse_analytics_events";
 const EXPERIMENT_ID = "clientpulse-briefs-2026-06-03";
 const VARIANT = "static-mvp-v1";
 const REMOTE_INTENT_BASE_URL = "https://github.com/ert93333-ops/clientpulse-briefs/issues/new";
+const REMOTE_INTENT_TEMPLATE = "demo_request.md";
 const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
 
 const buckets = [
@@ -131,9 +132,10 @@ function buildRemoteIntentBody(intent) {
 function buildRemoteIntentUrl(intent) {
   const safeBody = buildRemoteIntentBody(intent);
   const params = new URLSearchParams({
+    template: REMOTE_INTENT_TEMPLATE,
     title: `Early access request - ${intent.plan || "ClientPulse Briefs"}`,
     body: safeBody,
-    labels: "early-access,purchase-intent",
+    labels: "early-access,purchase-intent,demo-request",
   });
 
   return `${REMOTE_INTENT_BASE_URL}?${params.toString()}`;

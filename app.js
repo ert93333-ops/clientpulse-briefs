@@ -15,6 +15,7 @@ let pricingViewed = false;
 const ANALYTICS_KEY = "clientpulse_analytics_events";
 const EXPERIMENT_ID = "clientpulse-briefs-2026-06-03";
 const VARIANT = "static-mvp-v1";
+const REMOTE_INTENT_BASE_URL = "https://github.com/ert93333-ops/clientpulse-briefs/issues/new";
 const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
 
 const buckets = [
@@ -104,6 +105,65 @@ function getMetrics() {
     totals[item.event] = (totals[item.event] || 0) + 1;
     return totals;
   }, {});
+}
+
+function buildRemoteIntentUrl(intent) {
+  const safeBody = [
+    "ClientPulse Briefs early-access request",
+    "",
+    "Please remove anything you do not want public before submitting this issue.",
+    "Email is not included here because GitHub issues are public.",
+    "",
+    `Role: ${intent.role || "not provided"}`,
+    `Plan interest: ${intent.plan || "not provided"}`,
+    `Update frequency: ${intent.frequency || "not provided"}`,
+    `Willingness to pay: ${intent.willingness || "not provided"}`,
+    `Purchase intent checkbox: ${intent.purchaseIntent ? "yes" : "no"}`,
+    `UTM source: ${intent.utm.source}`,
+    `UTM medium: ${intent.utm.medium}`,
+    `UTM campaign: ${intent.utm.campaign}`,
+    "",
+    "Biggest update pain, optional:",
+    intent.pain || "not provided",
+  ].join("\n");
+
+  const params = new URLSearchParams({
+    title: `Early access request - ${intent.plan || "ClientPulse Briefs"}`,
+    body: safeBody,
+  });
+
+  return `${REMOTE_INTENT_BASE_URL}?${params.toString()}`;
+}
+
+function renderWaitlistSuccess(intent) {
+  const remoteIntentUrl = buildRemoteIntentUrl(intent);
+  const remoteLink = document.createElement("a");
+  remoteLink.id = "remote-intent-link";
+  remoteLink.className = "remote-intent-link";
+  remoteLink.href = remoteIntentUrl;
+  remoteLink.target = "_blank";
+  remoteLink.rel = "noopener noreferrer";
+  remoteLink.textContent = "Send request to launch team";
+  remoteLink.addEventListener("click", () => {
+    track("remote_intent_clicked", {
+      target: "github_issue",
+      plan: intent.plan,
+      purchase_intent: intent.purchaseIntent,
+    });
+  });
+
+  waitlistStatus.replaceChildren(
+    document.createTextNode("You are on the early access list. Your plan interest was recorded."),
+    document.createElement("br"),
+    document.createTextNode("To send the request to the launch team, open a prefilled public GitHub issue and remove anything you do not want public."),
+    remoteLink,
+  );
+
+  track("remote_intent_ready", {
+    target: "github_issue",
+    plan: intent.plan,
+    purchase_intent: intent.purchaseIntent,
+  });
 }
 
 function restartAnimation(element, className) {
@@ -370,8 +430,8 @@ if (waitlistForm && waitlistStatus) {
       });
     }
 
-    waitlistStatus.className = "form-note success";
-    waitlistStatus.textContent = "You are on the early access list. Your plan interest was recorded.";
+    waitlistStatus.className = "form-note success intent-note";
+    renderWaitlistSuccess(intent);
     restartAnimation(waitlistStatus, "success");
     waitlistForm.reset();
   });

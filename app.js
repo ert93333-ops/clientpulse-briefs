@@ -107,8 +107,8 @@ function getMetrics() {
   }, {});
 }
 
-function buildRemoteIntentUrl(intent) {
-  const safeBody = [
+function buildRemoteIntentBody(intent) {
+  return [
     "ClientPulse Briefs early-access request",
     "",
     "Please remove anything you do not want public before submitting this issue.",
@@ -126,7 +126,10 @@ function buildRemoteIntentUrl(intent) {
     "Biggest update pain, optional:",
     intent.pain || "not provided",
   ].join("\n");
+}
 
+function buildRemoteIntentUrl(intent) {
+  const safeBody = buildRemoteIntentBody(intent);
   const params = new URLSearchParams({
     title: `Early access request - ${intent.plan || "ClientPulse Briefs"}`,
     body: safeBody,
@@ -137,6 +140,7 @@ function buildRemoteIntentUrl(intent) {
 }
 
 function renderWaitlistSuccess(intent) {
+  const remoteIntentBody = buildRemoteIntentBody(intent);
   const remoteIntentUrl = buildRemoteIntentUrl(intent);
   const remoteLink = document.createElement("a");
   remoteLink.id = "remote-intent-link";
@@ -153,11 +157,40 @@ function renderWaitlistSuccess(intent) {
     });
   });
 
+  const copyIntentButton = document.createElement("button");
+  copyIntentButton.id = "copy-intent-details";
+  copyIntentButton.className = "remote-intent-link";
+  copyIntentButton.type = "button";
+  copyIntentButton.textContent = "Copy request details";
+  copyIntentButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(remoteIntentBody);
+      copyIntentButton.textContent = "Copied request details";
+      track("remote_intent_copied", {
+        target: "clipboard",
+        plan: intent.plan,
+        purchase_intent: intent.purchaseIntent,
+      });
+      window.setTimeout(() => {
+        copyIntentButton.textContent = "Copy request details";
+      }, 1800);
+    } catch {
+      copyIntentButton.textContent = "Copy failed";
+      window.setTimeout(() => {
+        copyIntentButton.textContent = "Copy request details";
+      }, 1800);
+    }
+  });
+
+  const actionRow = document.createElement("span");
+  actionRow.className = "intent-action-row";
+  actionRow.append(remoteLink, copyIntentButton);
+
   waitlistStatus.replaceChildren(
     document.createTextNode("You are on the early access list. Your plan interest was recorded."),
     document.createElement("br"),
     document.createTextNode("To send the request to the launch team, open a prefilled public GitHub issue and remove anything you do not want public."),
-    remoteLink,
+    actionRow,
   );
 
   track("remote_intent_ready", {

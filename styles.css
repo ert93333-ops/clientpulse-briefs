@@ -633,6 +633,12 @@ button:disabled {
   line-height: 1.45;
 }
 
+.intent-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .remote-intent-link {
   display: inline-flex;
   width: fit-content;
@@ -646,6 +652,7 @@ button:disabled {
   font-size: 0.88rem;
   font-weight: 800;
   padding: 0 14px;
+  text-decoration: none;
   transition:
     border-color var(--motion-fast) ease,
     box-shadow var(--motion-fast) ease,

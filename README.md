@@ -32,6 +32,7 @@ https://ert93333-ops.github.io/clientpulse-briefs/?utm_source=github&utm_medium=
 
 - Weekly client status update template: https://ert93333-ops.github.io/clientpulse-briefs/client-status-update-template.html
 - ChatGPT alternative for client status updates: https://ert93333-ops.github.io/clientpulse-briefs/chatgpt-alternative-client-status-updates.html
+- Free agency client status update template gist: https://gist.github.com/ert93333-ops/87eff75df37b85488de7e3725aa1d4c5
 
 ## Status
 
